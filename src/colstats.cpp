@@ -3,6 +3,7 @@
 #include <bigstatsr/BMCodeAcc.h>
 
 /******************************************************************************/
+template <class C>
 ListOf<NumericVector> snp_colstats0(C macc,
                                    const IntegerVector& rowInd,
                                    const IntegerVector& colInd,

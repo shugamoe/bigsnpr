@@ -7,6 +7,7 @@
 /******************************************************************************/
 
 // Clumping within a distance in bp (with cached correlations)
+template <class C>
 arma::sp_mat clumping_chr_cached0(C macc,
                                  Environment BM2,
                                  arma::sp_mat sqcor,
