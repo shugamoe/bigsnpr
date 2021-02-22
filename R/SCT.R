@@ -41,7 +41,7 @@ snp_grid_clumping <- function(
   ncores = 1
 ) {
 
-  check_args()
+  check_args(G = "assert_class(G, 'FBM')")
   assert_lengths(cols_along(G), infos.chr, infos.pos, infos.imp, lpS)
   assert_class(groups, "list")
 

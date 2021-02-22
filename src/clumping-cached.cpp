@@ -22,9 +22,19 @@ arma::sp_mat clumping_chr_cached(Environment BM,
                                  double size,
                                  double thr,
                                  int ncores) {
-
   XPtr<FBM> xpBM = BM["address"];
-  SubBMCode256Acc macc(xpBM, rowInd, colInd, BM["code256"], 1);
+  if (BM.exists("code256")) {
+    SubBMCode256Acc macc(xpBM, rowInd, colInd, BM["code256"], 1);
+  } else {
+    switch(xpBM->matrix_type()) {
+    case 6:
+    {
+      SubBMAcc<float> macc(xpBM, rowInd, colInd, 1);
+    }
+    default:
+      throw Rcpp::exception(ERROR_TYPE);
+    }
+  }
 
   XPtr<FBM_RW> xpBM2 = BM2["address_rw"];
   int * keep = static_cast<int *>(xpBM2->matrix());
