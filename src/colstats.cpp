@@ -11,8 +11,27 @@ ListOf<NumericVector> snp_colstats(Environment BM,
                                    int ncores) {
 
   XPtr<FBM> xpBM = BM["address"];
-  SubBMCode256Acc macc(xpBM, rowInd, colInd, BM["code256"], 1);
+  if (BM.exists("code256")) {
+    SubBMCode256Acc macc(xpBM, rowInd, colInd, BM["code256"], 1);
+    return snp_colstats0(macc, rowInd, colInd, ncores)
+  } else {
+    switch(xpBM->matrix_type()) {
+    case 6:
+    {
+      SubBMAcc<float> macc(xpBM, rowInd, colInd, 1);
+      return snp_colstats0(macc, rowInd, colInd, ncores)
+    }
+    default:
+      throw Rcpp::exception(ERROR_TYPE);
+    }
+  }
+}
 
+
+ListOf<NumericVector> snp_colstats0(C macc,
+                                   const IntegerVector& rowInd,
+                                   const IntegerVector& colInd,
+                                   int ncores) {
   size_t n = macc.nrow();
   size_t m = macc.ncol();
 
