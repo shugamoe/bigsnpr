@@ -40,7 +40,7 @@ snp_PRS <- function(G, betas.keep,
                     lpS.keep = NULL,
                     thr.list = 0) {
 
-  check_args()
+  check_args(G = "assert_class(G, 'FBM')")
   assert_nona(same.keep)
   assert_type(same.keep, "logical")
   assert_lengths(same.keep, ind.keep)

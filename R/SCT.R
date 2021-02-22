@@ -206,7 +206,7 @@ snp_grid_PRS <- function(
   ncores = 1
 ) {
 
-  check_args()
+  check_args(G = "assert_class(G, 'FBM')")
   assert_lengths(cols_along(G), betas, lpS)
 
   all_keep2 <- unlist(all_keep, recursive = FALSE)
