@@ -31,7 +31,7 @@ arma::sp_mat clumping_chr_cached(Environment BM,
     case 6:
     {
       SubBMAcc<float> macc(xpBM, rowInd, colInd, 1);
-    return clumping_chr_cached0(macc, &BM2, &sqcor, spInd, rowInd, colInd, ordInd, rankInd, pos, sumX, denoX, size, thr, ncores)
+      return clumping_chr_cached0(macc, &BM2, &sqcor, spInd, rowInd, colInd, ordInd, rankInd, pos, sumX, denoX, size, thr, ncores)
     }
     default:
       throw Rcpp::exception(ERROR_TYPE);
