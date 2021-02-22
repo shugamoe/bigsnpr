@@ -13,13 +13,13 @@ ListOf<NumericVector> snp_colstats(Environment BM,
   XPtr<FBM> xpBM = BM["address"];
   if (BM.exists("code256")) {
     SubBMCode256Acc macc(xpBM, rowInd, colInd, BM["code256"], 1);
-    return snp_colstats0(macc, rowInd, colInd, ncores)
+    return snp_colstats0(macc, rowInd, colInd, ncores);
   } else {
     switch(xpBM->matrix_type()) {
     case 6:
     {
       SubBMAcc<float> macc(xpBM, rowInd, colInd, 1);
-      return snp_colstats0(macc, rowInd, colInd, ncores)
+      return snp_colstats0(macc, rowInd, colInd, ncores);
     }
     default:
       throw Rcpp::exception(ERROR_TYPE);
