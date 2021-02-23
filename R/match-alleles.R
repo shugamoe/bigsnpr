@@ -280,7 +280,7 @@ snp_asGeneticPos <- function(infos.chr, infos.pos, dir = tempdir(), ncores = 1) 
       utils::download.file(url, destfile = gzfile, quiet = TRUE)
       R.utils::gunzip(gzfile)
     }
-    map.chr <- bigreadr::fread2(mapfile, showProgress = FALSE)
+    map.chr <- bigreadr::fread2(mapfile, showProgress = FALSE, nThread = max(2, data.table::getDTthreads()))
     ind <- bigutilsr::knn_parallel(as.matrix(map.chr$V2), as.matrix(pos[ind.chr]),
                                    k = 1, ncores = 1)$nn.idx
     map.chr$V3[ind]
