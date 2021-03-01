@@ -149,9 +149,7 @@ snp_readBGEN <- function(bgenfiles, backingfile, list_snp_id,
     # Fill the FBM from BGEN files (and get SNP info)
     do.call("rbind", lapply(seq_along(bgenfiles), function(ic) {
 
-      # snp_id <- format_snp_id(list_snp_id[[ic]])
-      # .bgen files in use have format <chr_num>:<pos>_<a0>_<a1>
-      snp_id <- list_snp_id[[ic]]
+      snp_id <- format_snp_id(list_snp_id[[ic]])
       infos <- snp_readBGI(bgifiles[ic], snp_id)
 
       # Get dosages in FBM
