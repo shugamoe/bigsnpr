@@ -37,10 +37,11 @@ snp_readBGI <- function(bgifile, snp_id) {
   if (anyNA(ind)) {
     saveRDS(snp_id[is.na(ind)],
             tmp <- sub("\\.bgen\\.bgi$", "_not_found.rds", bgifile))
-    stop2("Some variants have not been found (stored in '%s').", tmp)
+    # stop2("Some variants have not been found (stored in '%s').", tmp)
+    message2("Some variants have not been found (stored in '%s').", tmp)
   }
 
-  infos[ind, ]
+  infos[ind[which(!is.na(ind))], ]
 }
 
 ################################################################################
