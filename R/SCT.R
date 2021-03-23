@@ -295,6 +295,7 @@ snp_grid_stacking <- function(multi_PRS, y.train,
   list(
     intercept  = best_mod$intercept,
     beta.G     = coef * beta_gwas,
+    coef     = coef,
     beta.covar = tail(beta_best_mod, -length(ind_col)),
     mod = mod
   )
